@@ -14,16 +14,22 @@ const EditorShowcase = () => {
               ArchiveG has its own customized editor for creating articles.
             </p>
             <p className="">
-              Archiveg easily lets the users write and edit their posts. The built in editor uses markdown to easily style and structure the content. 
-              The editor includes boilerplate code and text to showcase how it should be used to build beautiful and contentful articles.
-              Write everything from text to complex math-problems, easily, with archiveg
+              Archiveg easily lets the users write and edit their posts. The
+              built in editor uses markdown to easily style and structure the
+              content. The editor includes boilerplate code and text to showcase
+              how it should be used to build beautiful and contentful articles.
+              Write everything from text to complex math-problems, easily, with
+              archiveg
             </p>
           </div>
-          <a href="/" className="bg-blue-700 text-blue-50 py-2 rounded flex items-center justify-center  justify-self-end">
+          <a
+            href="/"
+            className="bg-blue-700 text-blue-50 py-2 rounded flex items-center justify-center  justify-self-end"
+          >
             Start Writing
           </a>
         </div>
-        <div className="flex w-[50%] h-[500px] relative shadow">
+        <div className="flex w-full md:w-[50%] h-[500px] relative shadow">
           <Image
             alt="something"
             src={quill}

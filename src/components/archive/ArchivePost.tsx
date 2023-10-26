@@ -16,7 +16,7 @@ const ArchivePost = ({ post }) => {
           size={24}
         />
         {postSettingsOpen && (
-          <div className="w-48 h-auto bg-white rounded shadow absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col gap-2 justify-between p-2">
+          <div className="w-48 h-auto z-40 bg-white rounded shadow absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col gap-2 justify-between p-2">
             <div className="h-8 flex items-center gap-3 hover:bg-blue-950/5 pl-2">
               <Edit strokeWidth={1} size={16}></Edit>Edit Post
             </div>
@@ -31,6 +31,12 @@ const ArchivePost = ({ post }) => {
           </div>
         )}
       </div>
+      {postSettingsOpen && (
+        <div
+          onClick={() => setPostSettingsOpen(false)}
+          className="h-screen w-screen  fixed top-0 left-0"
+        ></div>
+      )}
     </div>
   );
 };

@@ -7,12 +7,15 @@ import {
 import NavbarUserMenu from "./NavbarUserMenu";
 import Link from "next/link";
 import { Package } from "lucide-react";
+import MobileNavbar from "./MobileNavbar";
 const Navbar = () => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
   return (
     <div className="flex items-center z-50 bg-white justify-center h-14 w-full fixed top-0 left-0">
-      <div className=" max-w-[90rem] flex w-full h-full items-center justify-evenly ">
+      <MobileNavbar user={user}></MobileNavbar>
+
+      <div className=" max-w-[90rem] md:flex w-full h-full items-center justify-evenly hidden">
         <h1 className="text-xl flex gap-1 items-center justify-center font-bold text-blue-950">
           <Package size={24} strokeWidth={2} />
           archiveg
@@ -45,7 +48,16 @@ const Navbar = () => {
               </RegisterLink>
             </div>
           ) : (
-            <NavbarUserMenu user={user}></NavbarUserMenu>
+            <NavbarUserMenu user={user}>
+              <div className="flex gap-3 items-center">
+                <LoginLink className=" px-4 py-1 hover:underline ">
+                  Sign in
+                </LoginLink>
+                <RegisterLink className=" px-4 py-1 bg-blue-700 text-blue-50 rounded hover:scale-[1.02] duration-150 ">
+                  Sign up
+                </RegisterLink>
+              </div>
+            </NavbarUserMenu>
           )}
         </div>
       </div>

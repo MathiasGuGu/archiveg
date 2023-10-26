@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UploadDropzone } from "@/lib/uploadthing";
-import { Ghost, Loader2, MoveLeft } from "lucide-react";
+import { Ghost, Loader2, MoveLeft, X } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import Link from "next/link";
@@ -54,19 +54,36 @@ const Page = () => {
   const [articlePreview, setArticlePreview] = useState<boolean>(true);
   const [showExampleText, setShowExampleText] = useState<boolean>(true);
   const [bodyText, setBodyText] = useState("");
+  const [title, setTitle] = useState("");
+  const [errors, setErrors] = useState({});
   const [tags, setTags] = useState([]);
   const [tagsInput, setTagsInput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
-  console.log(bodyText);
+  useEffect(() => {
+    validateForm();
+  }, [bodyText, title]);
+
+  const validateForm = () => {
+    let errors = {};
+    if (!title) {
+      errors.title = "A Title is required.";
+    } else if (title.length < 4) {
+      errors.title = "The title must have a minimum of 4 characters";
+    }
+
+    if (!bodyText) {
+      errors.bodyText = "Body is required.";
+    } else if (bodyText.length < 50) {
+      errors.bodyText = "The body mush have 50 or more characters.";
+    }
+
+    setErrors(errors);
+    setIsFormValid(Object.keys(errors).length === 0);
+  };
+
   const bodyRef = useRef(null);
-
-  //TODO: add loading state for when submitting
-  // add toast for when submitting
-  // Clean up submit button
-  // Make submitting actualy post an article
-  // ability to remove reference entry
-  // make add post page protected
 
   const handlePostSubmit = async (e: any) => {
     e.preventDefault();
@@ -102,6 +119,24 @@ const Page = () => {
       value.slice(0, selectionEnd) + "\n" + element + value.slice(selectionEnd);
 
     setBodyText(body.value);
+  };
+
+  const handleRemoveTag = (value) => {
+    setTags((prev) => {
+      const newTags = prev.filter((tag) => {
+        return tag !== value;
+      });
+
+      return newTags;
+    });
+  };
+
+  const checkTagInQuery = (value) => {
+    if (!tags.includes(value)) {
+      setTags((prev) => [...prev, value]);
+    } else {
+      toast.error("You have already included that tag");
+    }
   };
 
   return (
@@ -169,12 +204,28 @@ const Page = () => {
           className="w-full h-auto flex flex-col gap-12 py-12  max-w-xl "
         >
           <div className="w-full flex flex-col gap-2">
-            <div className="text-xl text-zinc-700">Title *</div>
+            <div
+              className={cn({
+                "text-xl text-zinc-700": true,
+                "": errors.title,
+              })}
+            >
+              Title *
+            </div>
             <input
+              onInput={(e) => {
+                setTitle(e.target.value);
+              }}
               required
-              className=" border px-3 h-10 rounded placeholder:text-sm"
+              className={cn({
+                " border px-3 h-10 rounded placeholder:text-sm": true,
+                " border-red-600": errors.title,
+              })}
               placeholder="My awesome article"
             ></input>
+            {errors.title && (
+              <p className="text-sm text-red-600">* {errors.title}</p>
+            )}
           </div>
 
           <div className="w-full flex flex-col gap-5">
@@ -213,10 +264,17 @@ const Page = () => {
                 setBodyText((prev) => prev + e.target.value);
               }}
               ref={bodyRef}
-              className=" border px-3 py-3  rounded placeholder:text-sm resize-none h-96"
+              className={cn({
+                " border px-3 py-3  rounded placeholder:text-sm resize-none h-96":
+                  true,
+                "border-red-600": errors.bodyText,
+              })}
               placeholder="This is what i will be talking about today"
               defaultValue={bodyText}
             />
+            {errors.bodyText && (
+              <p className="text-sm text-red-600">* {errors.bodyText}</p>
+            )}
             <div className="w-full h-auto md:h-24 mt-24 p-3 rounded-xl  bg-gradient-to-tr from-blue-500 to-cyan-700">
               <h2 className="text-xl md:text-2xl text-blue-50 font-bold">
                 Note
@@ -264,8 +322,17 @@ const Page = () => {
                 <div className="flex gap-3 flex-wrap  w-full">
                   {tags.map((tag, index) => {
                     return (
-                      <div className="border px-3 py-1 rounded bg-blue-950/10 text-blue-600">
-                        {tag}
+                      <div
+                        key={index}
+                        onClick={() => handleRemoveTag(tag)}
+                        className="border px-3 group py-1 flex items-center hover:cursor-pointer justify-center gap-1 rounded bg-blue-950/10 text-blue-600"
+                      >
+                        {tag}{" "}
+                        <X
+                          className="p-1 h-7 w-7 rounded group-hover:bg-blue-950/5 duration-150"
+                          strokeWidth={1}
+                          size={20}
+                        ></X>
                       </div>
                     );
                   })}
@@ -287,7 +354,7 @@ const Page = () => {
             ></input>
             <div
               onClick={() => {
-                setTags((prev) => [...prev, tagsInput]);
+                checkTagInQuery(tagsInput);
               }}
               className="px-3 py-1  border w-fit border-blue-900 text-blue-900 text-sm hover:bg-blue-900 hover:text-blue-50 hover:cursor-pointer"
             >
@@ -295,13 +362,29 @@ const Page = () => {
             </div>
           </div>
           <button
+            disabled={!isFormValid}
             type="submit"
-            className="bg-blue-950 w-fit hover:bg-blue-950/90 duration-150 rounded text-blue-50 px-6 py-2 self-center mt-32"
+            className="bg-blue-950 w-fit hover:bg-blue-950/90 duration-150 rounded hover:cursor-pointer text-blue-50 px-6 py-2 self-center mt-32"
           >
             {isSubmitting ? (
               <Loader2 className=" animate-spin"></Loader2>
             ) : (
-              <div> Publish Article</div>
+              <div
+                className="w-full h-full"
+                onClick={() => {
+                  if (!isFormValid) {
+                    console.log("error");
+                    toast.error(
+                      "Fill in all the necessary fields before submitting"
+                    );
+                  } else {
+                    console.log("Valid submit");
+                  }
+                }}
+              >
+                {" "}
+                Publish Article
+              </div>
             )}
           </button>
         </form>

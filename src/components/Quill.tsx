@@ -22,7 +22,7 @@ const Quill = () => {
             Try Quill
           </button>
         </div>
-        <div className="flex w-[50%] h-[500px] relative shadow">
+        <div className="flex sm:w-full md:w-[50%] h-[500px] relative shadow">
           <Image
             alt="something"
             src={quill}
