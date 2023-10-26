@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-const DeleteBtn = ({ id }) => {
+const DeleteBtn = ({ id, children, callbackRoute }) => {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteInProgress, setDeleteInProgress] = useState();
@@ -19,7 +19,7 @@ const DeleteBtn = ({ id }) => {
             <div
               onClick={async () => {
                 await deletePost(id);
-                router.push("/feed");
+                router.push(callbackRoute);
               }}
               className="px-4 py-2 border-2 border-red-700 text-red-70 rounded hover:bg-red-700 hover:text-red-50 hover:cursor-pointer"
             >
@@ -36,11 +36,8 @@ const DeleteBtn = ({ id }) => {
           </div>
         </div>
       ) : (
-        <div
-          onClick={() => setIsDeleting(true)}
-          className="px-3 py-2 outline outline-2 outline-red-400 rounded hover:bg-red-400 hover:text-red-950 fixed bottom-14 left-12 hover:cursor-pointer text-sm"
-        >
-          Delete Post
+        <div onClick={() => setIsDeleting(true)} className="w-full h-full">
+          {children}
         </div>
       )}
     </>

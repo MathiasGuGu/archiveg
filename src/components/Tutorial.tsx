@@ -2,7 +2,7 @@ import React from "react";
 import { List, User2, PenLine, Heart, Share } from "lucide-react";
 const Tutorial = () => {
   return (
-    <div className="h-auto w-full max-w-4xl  flex flex-wrap text-sm border">
+    <div className="h-auto w-full max-w-4xl  flex flex-wrap text-sm ">
       <div className="flex flex-1 border-x bg-white/40 border-x-blue-950 min-w-[50%] md:min-w-[33%]  items-center justify-center gap-3 h-16">
         Visit the Feed <List strokeWidth={1} />
       </div>

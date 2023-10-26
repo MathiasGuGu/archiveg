@@ -1,7 +1,9 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { useRouter } from "next/navigation";
 
 const prisma = new PrismaClient();
 
@@ -28,6 +30,20 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
   const data = await prisma.post.delete({
     where: {
       id: body.id,
+    },
+  });
+
+  return new NextResponse(JSON.stringify(data), {
+    status: 200,
+    headers: { "content-type": "application/json" },
+  });
+}
+
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
+  const email = req.url?.split("?")[1].split("=")[1]
+  const data = await prisma.post.findMany({
+    where: {
+      authorEmail: email
     },
   });
 

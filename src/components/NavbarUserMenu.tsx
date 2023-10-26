@@ -6,7 +6,6 @@ import React, { useState } from "react";
 const NavbarUserMenu = ({ user }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   const [isMenuAdmin, setIsMenuAdmin] = useState<Boolean>(false);
-  console.log(user);
   return (
     <div className="relative flex items-center  gap-5">
       <div>
@@ -19,31 +18,43 @@ const NavbarUserMenu = ({ user }: any) => {
         className="h-11 aspect-square bg-blue-950 rounded-full relative shadow hover:cursor-pointer duration-100"
       ></div>
       {isMenuOpen && (
-        <div className="absolute shadow-xl border-t h-auto w-56 rounded-xl bg-white px-4 py-5  top-14 left-1/2 -translate-x-1/2 flex flex-col gap-12">
-          <ul className="flex flex-col gap-3 text-sm underline">
+        <div className="absolute shadow-xl border-t h-auto w-80 rounded bg-white px-4 py-5  top-14 left-1/2 -translate-x-1/2 flex flex-col gap-12">
+          <ul className="flex flex-col gap-3 text-sm ">
             <Link
-              href={`/u/${user.id}/articles`}
-              className="flex gap-4 items-center  py-2 px-2 rounded hover:bg-slate-50 hover:cursor-pointer"
+              href={`/u/${user.id}?s=archive`}
+              className="flex flex-col  justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer"
             >
+              <div className="flex px-2 gap-4">
               <Package size={16} strokeWidth={1} />
               Archive
+              </div>
+              <p className="text-xs text-zinc-500 px-10"> All of your articles</p>
+
             </Link>
-            <li className="flex gap-4 items-center  py-2 px-2 rounded  hover:bg-slate-50 hover:cursor-pointer">
-              <Heart size={16} strokeWidth={1} />
-              Followed Users
-            </li>
+            <div className="w-full h-[1px] bg-blue-950/20"></div>
 
             <Link
-              href={`/u/${user.id}/account`}
-              className="flex gap-4 items-center  py-2 px-2 rounded  hover:bg-slate-50 hover:cursor-pointer"
+              href={`/u/${user.id}?s=account`}
+              className="flex flex-col justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer"
+
             >
+              <div className="flex px-2 gap-4">
+
               <User2 size={16} strokeWidth={1} />
               Account
+              </div>
+              <p className="text-xs text-zinc-500 px-10"> You account settings</p>
+
             </Link>
-            <li className="flex gap-4 items-center  py-2 px-2 rounded  hover:bg-slate-50 hover:cursor-pointer">
+            <Link href={`/u/${user.id}?s=settings`}
+              className="flex flex-col justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer">
+              <div className="flex px-2 gap-4">
+
               <Settings size={16} strokeWidth={1} />
               Settings
-            </li>
+              </div>
+              <p className="text-xs text-zinc-500 px-10"> You application settings</p>
+            </Link>
           </ul>
           <Link href="/api/auth/logout" className="self-end">
             <LogOut

@@ -18,7 +18,12 @@ const Page = async (context) => {
   };
   const post = await getData();
 
-  const userOwnsPost = post.authorEmail === user.email;
+  let userOwnsPost;
+  if (user) {
+    userOwnsPost = post.authorEmail === user.email;
+  } else {
+    userOwnsPost = false;
+  }
 
   return (
     <div className="w-full h-auto flex flex-col items-center justify-center mt-32 mb-32 gap-12">
@@ -72,7 +77,13 @@ const Page = async (context) => {
           )}
         </div>
       </>
-      {userOwnsPost ? <DeleteBtn id={id}></DeleteBtn> : null}
+      {userOwnsPost ? (
+        <DeleteBtn callbackRoute={"/feed"} id={id}>
+          <div className="text-red-500 px-6 py-2 bg-red-500/20 w-fit">
+            Delete
+          </div>
+        </DeleteBtn>
+      ) : null}
     </div>
   );
 };

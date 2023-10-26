@@ -47,7 +47,7 @@ const FeedFilter = ({
   return (
     <aside
       className={cn({
-        "flex mt-14 flex-col z-50 md:flex-col h-screen   fixed left-0 top-0  ":
+        "flex mt-14 flex-col z-50 md:flex-col h-screen overflow-y-scroll px-6 pb-12  fixed left-0 top-0  ":
           true,
         "w-[350px] shadow bg-white": isFilterOpen,
         "w-16 md:w-32 md:bg-white": !isFilterOpen,
@@ -65,7 +65,7 @@ const FeedFilter = ({
       {isFilterOpen && (
         <form
           className={cn({
-            "w-full h-auto flex flex-col bg-white  px-5 pt-4  md:pt-48 gap-12":
+            "w-full h-auto flex flex-col bg-white  px-5 pt-4  md:pt-28 pb-12 gap-12":
               true,
           })}
         >
@@ -129,12 +129,12 @@ const FeedFilter = ({
                 );
               })}
             </div>
-            <div className="flex">
+            <div className="flex w-full">
               <input
                 onChange={(e) => {
                   setTagInput(e.target.value);
                 }}
-                className=" border px-3 h-10 rounded-l placeholder:text-sm"
+                className=" border px-3 h-10 w-[80%] rounded-l placeholder:text-sm"
                 placeholder="Add tag"
               ></input>
               <button
