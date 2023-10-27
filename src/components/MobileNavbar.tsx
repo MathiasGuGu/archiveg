@@ -5,20 +5,19 @@ import React, { useState } from "react";
 import NavbarUserMenu from "./NavbarUserMenu";
 import { cn } from "@/lib/utils";
 
-const MobileNavbar = ({ user }, children) => {
+const MobileNavbar = ({ user, children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   console.log(isSidebarOpen);
   return (
     <div className="flex md:hidden relative w-full h-full items-center justify-between px-4">
       <h1 className="text-xl flex gap-1 items-center justify-center font-bold text-blue-950">
-        <Package size={24} strokeWidth={2} />
         archiveg
       </h1>
       <div className="flex gap-6 items-center justify-center">
         <div className="flex gap-4 items-center">
           {!user ? (
-            <>{children}</>
+            <div>{children}</div>
           ) : (
             <NavbarUserMenu user={user}></NavbarUserMenu>
           )}

@@ -18,13 +18,16 @@ const Quill = () => {
               like, export it as a PDF and start asking it questions!
             </p>
           </div>
-          <button className="bg-blue-700 text-blue-50 py-2 rounded">
+          <button
+            className="bg-blue-700 text-blue-50 py-2 rounded"
+            aria-label="Try Quill"
+          >
             Try Quill
           </button>
         </div>
         <div className="flex sm:w-full md:w-[50%] h-[500px] relative shadow">
           <Image
-            alt="something"
+            alt="Illustration of a person using Quill to talk to a PDF file"
             src={quill}
             fill
             className="rounded-lg object-cover object-top overflow-hidden"

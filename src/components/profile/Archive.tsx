@@ -4,7 +4,7 @@ import React from "react";
 import ArchivePost from "../archive/ArchivePost";
 
 const Archive = ({ user }) => {
-  const posts = useArchive(user.email);
+  const posts = useArchive(user?.email);
   return (
     <div className="w-full h-auto gap-2  flex flex-col justify-center">
       {posts?.map((post, index) => {

@@ -32,12 +32,8 @@ const Page = () => {
           -> Filter by searchquery
         */}
       <FeedFilter
-        searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        dateQuery={dateQuery}
         setDateQuery={setDateQuery}
-        likeQuery={likeQuery}
-        setLikeQuery={setLikeQuery}
         tagQuery={tagQuery}
         setTagQuery={setTagQuery}
         tagInput={tagInput}
@@ -48,7 +44,6 @@ const Page = () => {
           searchQuery={searchQuery}
           tagQuery={tagQuery}
           dateQuery={dateQuery}
-          likesQuery={""}
         ></PostContainer>
       </section>
     </div>

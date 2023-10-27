@@ -7,7 +7,6 @@ import MarkdownParser from "@/components/MarkdownParser";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import DeleteBtn from "@/components/DeleteBtn";
 const Page = async (context) => {
-  //same name as name of your file, can be [slug].js; [specialId].js - any name you want
   const { getUser } = getKindeServerSession();
   const user = getUser();
   const id = context.params.slug;

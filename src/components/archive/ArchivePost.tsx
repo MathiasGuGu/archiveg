@@ -7,7 +7,7 @@ const ArchivePost = ({ post }) => {
   const [postSettingsOpen, setPostSettingsOpen] = useState(false);
   return (
     <div className="w-full h-16 text-sm  rounded flex px-12 items-center justify-between bg-zinc-100 hover:cursor-pointer  duration-200">
-      <h2>{post.title}</h2>
+      <h2>{post?.title}</h2>
       <div className="relative">
         <Settings
           onClick={() => setPostSettingsOpen((prev) => !prev)}
@@ -23,7 +23,7 @@ const ArchivePost = ({ post }) => {
             <div className="h-8 flex items-center gap-3 hover:bg-blue-950/5 pl-2">
               <FileQuestion strokeWidth={1} size={16}></FileQuestion>Hide Post
             </div>
-            <DeleteBtn callbackRoute={"?s=settings"} id={post.id}>
+            <DeleteBtn callbackRoute={"?s=settings"} id={post?.id}>
               <div className="h-8 flex items-center gap-3 hover:bg-blue-950/5 pl-2 text-red-500">
                 <X strokeWidth={1} size={16}></X>Delete Post
               </div>

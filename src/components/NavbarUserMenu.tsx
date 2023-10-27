@@ -9,7 +9,7 @@ const NavbarUserMenu = ({ user }: any) => {
   return (
     <div className="relative flex items-center  gap-5">
       <div>
-        <p className="text-xs  text-zinc-600">{user.given_name}</p>
+        <p className="text-xs  text-zinc-600">{user?.given_name}</p>
       </div>
       <div
         onClick={() => {
@@ -21,39 +21,45 @@ const NavbarUserMenu = ({ user }: any) => {
         <div className="absolute shadow-xl border-t h-auto w-80 rounded bg-white px-4 py-5  top-14 left-1/2 -translate-x-1/2 flex flex-col gap-12">
           <ul className="flex flex-col gap-3 text-sm ">
             <Link
-              href={`/u/${user.id}?s=archive`}
+              href={`/u/${user?.id}?s=archive`}
               className="flex flex-col  justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer"
             >
               <div className="flex px-2 gap-4">
-              <Package size={16} strokeWidth={1} />
-              Archive
+                <Package size={16} strokeWidth={1} />
+                Archive
               </div>
-              <p className="text-xs text-zinc-500 px-10"> All of your articles</p>
-
+              <p className="text-xs text-zinc-500 px-10">
+                {" "}
+                All of your articles
+              </p>
             </Link>
             <div className="w-full h-[1px] bg-blue-950/20"></div>
 
             <Link
-              href={`/u/${user.id}?s=account`}
+              href={`/u/${user?.id}?s=account`}
               className="flex flex-col justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer"
-
             >
               <div className="flex px-2 gap-4">
-
-              <User2 size={16} strokeWidth={1} />
-              Account
+                <User2 size={16} strokeWidth={1} />
+                Account
               </div>
-              <p className="text-xs text-zinc-500 px-10"> You account settings</p>
-
+              <p className="text-xs text-zinc-500 px-10">
+                {" "}
+                You account settings
+              </p>
             </Link>
-            <Link href={`/u/${user.id}?s=settings`}
-              className="flex flex-col justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer">
+            <Link
+              href={`/u/${user?.id}?s=settings`}
+              className="flex flex-col justify-center  py-2  rounded hover:bg-slate-50 hover:cursor-pointer"
+            >
               <div className="flex px-2 gap-4">
-
-              <Settings size={16} strokeWidth={1} />
-              Settings
+                <Settings size={16} strokeWidth={1} />
+                Settings
               </div>
-              <p className="text-xs text-zinc-500 px-10"> You application settings</p>
+              <p className="text-xs text-zinc-500 px-10">
+                {" "}
+                You application settings
+              </p>
             </Link>
           </ul>
           <Link href="/api/auth/logout" className="self-end">
