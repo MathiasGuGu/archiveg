@@ -43,8 +43,6 @@ const PostContainer = ({
 
   const showPosts = filterData(posts);
 
-  console.log(showPosts);
-
   return (
     <div className="mt-32 mb-32 flex flex-col gap-6 items-center min-h-[80vh] h-auto w-full  ">
       {showPosts?.length === 0 && (
