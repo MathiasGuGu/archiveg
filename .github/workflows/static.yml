@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "userProfile"]
 
   workflow_dispatch:
 
@@ -16,8 +16,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
     env:
