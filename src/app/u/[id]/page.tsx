@@ -14,11 +14,12 @@ const Page = async (context: any) => {
   );
   const { data, posts } = await request.json();
   const { banner, avatar, name, email, userId } = data;
-  let isLoggedInUser;
+  let isLoggedInUser = false;
   if (!user) {
     isLoggedInUser = false;
+  } else {
+    isLoggedInUser = user?.id === userId;
   }
-  isLoggedInUser = user?.id === userId;
   return (
     <div className="mt-14 flex flex-col w-full h-auto">
       <div className="w-full h-64 bg-gradient-to-tr from-purple-600 to-pink-600/50 relative">

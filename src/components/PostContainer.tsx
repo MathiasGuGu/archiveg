@@ -13,13 +13,9 @@ interface post {
   userId: string;
 }
 
-const PostContainer = ({
-  searchQuery = "",
-  tagQuery = [],
-  dateQuery,
-  likeQuery = "",
-}: any) => {
+const PostContainer = ({ searchQuery = "", tagQuery = [] }: any) => {
   const posts = usePosts();
+  console.log(posts);
 
   const filterData = (data: any) => {
     let post = data;
@@ -47,6 +43,7 @@ const PostContainer = ({
 
   return (
     <div className="mt-32 mb-32 flex flex-col gap-6 items-center min-h-[80vh] h-auto w-full  ">
+      {}
       {showPosts?.length === 0 && (
         <div className="h-[80vh] flex flex-col gap-3 items-center justify-center">
           <Ghost size={64} strokeWidth={1} color="rgb(29 78 216)"></Ghost>

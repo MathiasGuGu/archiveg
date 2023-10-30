@@ -6,15 +6,10 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const deUrl = req.url?.split("?")[1];
-  const query = deUrl?.split("&");
-  const date = query[0].split("=")[1];
-  const tags = query[1].split("=")[1];
-  const likes = query[2].split("=")[1];
 
   const data = await prisma.post.findMany({
     orderBy: {
-      createdAt: date == "old" ? "asc" : "desc",
+      createdAt: "desc"
     },
     include: {
       user: true,

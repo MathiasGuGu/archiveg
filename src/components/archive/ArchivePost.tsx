@@ -6,7 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const ArchivePost = ({ post, user, data }: any) => {
-  const isLoggedInUser = user.id === data.userId;
+  let isLoggedInUser;
+  if (!user) {
+    isLoggedInUser = false;
+  } else {
+    isLoggedInUser = user.id === data.userId;
+  }
   return (
     <>
       {isLoggedInUser ? (
@@ -25,7 +30,7 @@ export const BigArchivePost = ({ post }: any) => {
       href={`/a/${id}`}
       className="flex flex-col gap-3 mt-24 hover:outline outline-1  flex-grow min-w-[100px]  max-w-[400px] h-auto p-2 shadow-lg shadow-primary/5 rounded-lg "
     >
-      <div className="w-full  h-[200px] relative bg-gradient-to-tr from-blue-800 to-primary rounded-xl">
+      <div className="w-full  h-[200px] relative bg-gradient-to-tr from-pink-600 to-purple-600/40 rounded-xl">
         <Image
           fill
           alt="post image"
@@ -35,9 +40,7 @@ export const BigArchivePost = ({ post }: any) => {
       </div>
       <div className="flex flex-col px-3">
         <h1 className=" text-2xl font-bold text-primary truncate">{title}</h1>
-        <div className="h-[200px] w-[300px] overflow-hidden whitespace-pre-line ">
-          {body}
-        </div>
+        <div className="h-[200px] w-[300px] overflow-hidden ">{body}</div>
       </div>
     </Link>
   );

@@ -3,15 +3,9 @@ import FeedFilter from "@/components/FeedFilter";
 import PostContainer from "@/components/PostContainer";
 import React, { useCallback, useState } from "react";
 
-enum DATE {
-  NEWEST = "newest",
-  OLDEST = "oldest",
-}
-
 const Page = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [dateQuery, setDateQuery] = useState("new");
-  const [likeQuery, setLikeQuery] = useState();
   const [tagQuery, setTagQuery] = useState([]);
   const [tagInput, setTagInput] = useState("");
 
