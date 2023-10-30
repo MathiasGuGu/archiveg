@@ -19,9 +19,10 @@ const ArchivePost = ({ post, user, data }: any) => {
 };
 
 export const BigArchivePost = ({ post }: any) => {
+  const { id, image, title, body } = post;
   return (
     <Link
-      href={`/a/${post.id}`}
+      href={`/a/${id}`}
       className="flex flex-col gap-3 mt-24 hover:outline outline-1  flex-grow min-w-[100px]  max-w-[400px] h-auto p-2 shadow-lg shadow-primary/5 rounded-lg "
     >
       <div className="w-full  h-[200px] relative bg-gradient-to-tr from-blue-800 to-primary rounded-xl">
@@ -29,15 +30,13 @@ export const BigArchivePost = ({ post }: any) => {
           fill
           alt="post image"
           className="rounded-xl object-cover"
-          src={post?.image}
+          src={image}
         ></Image>
       </div>
       <div className="flex flex-col px-3">
-        <h1 className=" text-2xl font-bold text-primary truncate">
-          {post?.title}
-        </h1>
+        <h1 className=" text-2xl font-bold text-primary truncate">{title}</h1>
         <div className="h-[200px] w-[300px] overflow-hidden whitespace-pre-line ">
-          {post?.body}
+          {body}
         </div>
       </div>
     </Link>
@@ -47,9 +46,11 @@ export const BigArchivePost = ({ post }: any) => {
 export const SmallArchivePost = ({ post, user, data }: any) => {
   const isLoggedInUser = user.id === data.userId;
   const [postSettingsOpen, setPostSettingsOpen] = useState(false);
+  const { id, title } = post;
+
   return (
     <div className="w-full flex rounded border items-center justify-between border-primary px-12">
-      <div>{post?.title}</div>
+      <div>{title}</div>
 
       <div className="relative flex items-center   py-2">
         {isLoggedInUser && (
@@ -69,7 +70,7 @@ export const SmallArchivePost = ({ post, user, data }: any) => {
                   <FileQuestion strokeWidth={1} size={16}></FileQuestion>Hide
                   Post
                 </div>
-                <DeleteBtn callbackRoute={"?s=settings"} id={post?.id}>
+                <DeleteBtn callbackRoute={"?s=settings"} id={id}>
                   <div className="h-8 flex items-center gap-3 hover:cursor-pointer hover:bg-blue-950/5 pl-2 text-red-500">
                     <X strokeWidth={1} size={16}></X>Delete Post
                   </div>

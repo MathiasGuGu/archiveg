@@ -13,6 +13,7 @@ const Page = async (context: any) => {
     { method: "GET" }
   );
   const { data, posts } = await request.json();
+  const { banner, avatar, name, email } = data;
   const isLoggedInUser = user?.id === data?.userId;
   return (
     <div className="mt-14 flex flex-col w-full h-auto">
@@ -21,7 +22,7 @@ const Page = async (context: any) => {
           <Image
             alt="User avatar"
             fill
-            src={data?.banner}
+            src={banner}
             className=" w-full h-full object-cover   group-hover:flex  group-hover:items-center  group-hover:justify-center   group-hover:cursor-pointer"
           ></Image>
           <Camera
@@ -35,7 +36,7 @@ const Page = async (context: any) => {
             <Image
               alt="User avatar"
               fill
-              src={data?.avatar}
+              src={avatar}
               className=" w-full h-full rounded-full object-cover  group-hover:flex  group-hover:items-center  group-hover:justify-center   group-hover:cursor-pointer"
             ></Image>
           </div>
@@ -43,8 +44,8 @@ const Page = async (context: any) => {
       </div>
       <div className="mt-14  px-36 font-bold">
         <div className="flex flex-col">
-          <p>{data?.name}</p>
-          <p className="text-sm font-light text-zinc-400">{data?.email}</p>
+          <p>{name}</p>
+          <p className="text-sm font-light text-zinc-400">{email}</p>
         </div>
       </div>
       {isLoggedInUser ? (

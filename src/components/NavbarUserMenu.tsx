@@ -4,8 +4,7 @@ import { LogOut, Package, Settings, User2, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-const NavbarUserMenu = ({ user, data }: any) => {
-  console.log(data);
+const NavbarUserMenu = ({ user, data, avatar }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   return (
     <div className="relative flex items-center  gap-5">
@@ -22,7 +21,7 @@ const NavbarUserMenu = ({ user, data }: any) => {
           alt="avatar"
           fill
           className="rounded-full object-cover"
-          src={data?.avatar}
+          src={avatar}
         ></Image>
       </div>
       {isMenuOpen && (
