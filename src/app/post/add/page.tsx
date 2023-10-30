@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { Ghost, Loader2, MoveLeft, X } from "lucide-react";
 import { toast } from "sonner";
@@ -10,7 +10,7 @@ import { absoluteUrl, cn } from "@/lib/utils";
 import AddPostSettings from "@/components/AddPostSettings";
 import AddPostBodyElements from "@/components/AddPostBodyElements";
 import MarkdownParser from "@/components/MarkdownParser";
-import { userContext } from "@/app/providers";
+import useUser from "@/hooks/useUser";
 
 /*EXAMPLE POST
 
@@ -51,12 +51,17 @@ I usually use Unsplash for examples as it seamlesly integrates with markdown
 */
 
 const Page = () => {
-  // @ts-ignore: Unreachable code error
-  const { current } = useContext(userContext);
-  // @ts-ignore: Unreachable code error
-  let id;
+  const [id, setId] = useState<any>(null);
 
-  current?.id ? (id = current.id) : (id = null);
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await useUser();
+      const id = user.id;
+      setId(id);
+    };
+    getUser();
+  }, []);
+
   const [filePath, setFilePath] = useState<String | null>("");
   const [articlePreview, setArticlePreview] = useState<boolean>(true);
   const [showExampleText, setShowExampleText] = useState<boolean>(true);
@@ -84,7 +89,6 @@ const Page = () => {
         title,
         body,
         tags,
-        // @ts-ignore: Unreachable code error
         id,
       }),
     });
