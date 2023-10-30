@@ -53,12 +53,14 @@ I usually use Unsplash for examples as it seamlesly integrates with markdown
 const Page = () => {
   const [id, setId] = useState<any>(null);
 
+  const getData = async () => {
+    const user = await useUser();
+    const id = user.id;
+    setId(id);
+  };
+
   useEffect(() => {
-    (async () => {
-      const user = await useUser();
-      const id = user.id;
-      setId(id);
-    })();
+    getData();
   }, []);
 
   const [filePath, setFilePath] = useState<String | null>("");
