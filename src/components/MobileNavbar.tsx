@@ -4,6 +4,7 @@ import { Package } from "lucide-react";
 import React, { useState } from "react";
 import NavbarUserMenu from "./NavbarUserMenu";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const MobileNavbar = ({ user, children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -17,7 +18,7 @@ const MobileNavbar = ({ user, children }) => {
       <div className="flex gap-6 items-center justify-center">
         <div className="flex gap-4 items-center">
           {!user ? (
-            <div>{children}</div>
+            <>{children}</>
           ) : (
             <NavbarUserMenu user={user}></NavbarUserMenu>
           )}
@@ -35,7 +36,33 @@ const MobileNavbar = ({ user, children }) => {
           "right-0 ": isSidebarOpen,
           "right-0 translate-x-[100vw] ": !isSidebarOpen,
         })}
-      ></div>
+      >
+        <ul className="w-full h-full flex flex-col px-6 py-12 gap-7">
+          <Link
+            href={""}
+            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
+          >
+            <div className="font-bold text-primary">Home</div>
+            <p className="text-sm text-zinc-500">Welcome to the homepage</p>
+          </Link>
+          <Link
+            href={""}
+            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
+          >
+            <div className="font-bold text-primary">Feed</div>
+            <p className="text-sm text-zinc-500">
+              View all your favourite posts
+            </p>
+          </Link>
+          <Link
+            href={""}
+            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
+          >
+            <div className="font-bold text-primary">Add Post</div>
+            <p className="text-sm text-zinc-500">In the mood for writing?</p>
+          </Link>
+        </ul>
+      </div>
     </div>
   );
 };

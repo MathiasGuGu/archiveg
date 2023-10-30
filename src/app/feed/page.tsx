@@ -20,10 +20,15 @@ const Page = () => {
   const [tagQuery, setTagQuery] = useState([]);
   const [tagInput, setTagInput] = useState("");
 
-  console.log(dateQuery);
-
   return (
-    <div className="flex flex-col md:flex-row bg-[#f5f5f5]">
+    <div
+      className="flex flex-col md:flex-row bg-[#f5f5f5]"
+      style={{
+        backgroundImage:
+          " radial-gradient(#444cf750 0.9500000000000001px, #e5e5f750 0.9500000000000001px)",
+        backgroundSize: "19px 19px",
+      }}
+    >
       {/* 
         FilterForm
           -> Filter by date
@@ -33,7 +38,10 @@ const Page = () => {
         */}
       <FeedFilter
         setSearchQuery={setSearchQuery}
+        dateQuery={dateQuery}
         setDateQuery={setDateQuery}
+        likeQuery={likeQuery}
+        setLikeQuery={setLikeQuery}
         tagQuery={tagQuery}
         setTagQuery={setTagQuery}
         tagInput={tagInput}

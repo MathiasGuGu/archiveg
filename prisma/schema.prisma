@@ -13,9 +13,10 @@ model post {
   title       String
   body        String
   slug        String    @unique
-  userId      String?   @db.ObjectId
-  user        users?    @relation(fields: [userId], references: [id])
+  userId      String?
+  user        users?    @relation(fields: [userId], references: [userId])
   author      String
+  authorId    String
   authorEmail String
   createdAt   DateTime  @default(now()) @db.Date
   comments    comment[]
@@ -31,10 +32,13 @@ model tags {
 }
 
 model users {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  email String @unique
-  posts post[]
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique
+  avatar String @default("https://res.cloudinary.com/dq7l8216n/image/upload/v1620222")
+  banner String @default("https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+  name   String
+  email  String @unique
+  posts  post[]
 }
 
 model comment {

@@ -8,7 +8,10 @@ export default withUt({
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: { primary: "rgb(15 12 70)" },
+
+    },
   },
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 });
