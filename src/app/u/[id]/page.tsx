@@ -6,6 +6,7 @@ import Image from "next/image";
 import { absoluteUrl } from "@/lib/utils";
 const Page = async (context: any) => {
   const user = await useUser();
+  console.log(user);
   const request = await fetch(
     absoluteUrl(
       `/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`
@@ -14,7 +15,9 @@ const Page = async (context: any) => {
   );
   const { data, posts } = await request.json();
   const { banner, avatar, name, email, userId } = data;
+  console.log(name, email);
   const isLoggedInUser = user?.id === userId;
+  console.log(isLoggedInUser);
   return (
     <div className="mt-14 flex flex-col w-full h-auto">
       <div className="w-full h-64 bg-gradient-to-tr from-purple-600 to-pink-600/50 relative">

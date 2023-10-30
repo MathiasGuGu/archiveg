@@ -6,11 +6,13 @@ import { toast } from "sonner";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, res: NextResponse) {
-    const deUrl = req.url?.split("?")[1];
+export async function GET(req: NextRequest, res: NextApiResponse) {
 
-    const id = deUrl?.split("&")[0].split("=")[1]
-    const includePosts = deUrl?.split("&")[1].split("=")[1]
+
+    const id = req.nextUrl.searchParams.get("id")
+    const includePosts = req.nextUrl.searchParams.get("includePosts")
+
+
     if (!id) {
         toast.error("User not found")
         redirect("/")
@@ -23,11 +25,11 @@ export async function GET(req: NextRequest, res: NextResponse) {
         
     })
 
-
-    if (!includePosts)  return new NextResponse(JSON.stringify(data), {
+    if (!includePosts){  
+        return new NextResponse(JSON.stringify(data), {
         status: 200,
         headers: { "content-type": "application/json" },
-    });
+    })}
     const posts = await prisma.post.findMany({ where: { authorId: id } })
      
     return new NextResponse(JSON.stringify({data, posts}), {
