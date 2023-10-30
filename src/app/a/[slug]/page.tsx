@@ -7,6 +7,7 @@ import MarkdownParser from "@/components/MarkdownParser";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import DeleteBtn from "@/components/DeleteBtn";
 import Link from "next/link";
+import { absoluteUrl } from "@/lib/utils";
 const Page = async (context: any) => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
@@ -21,13 +22,6 @@ const Page = async (context: any) => {
 
   console.log(post.authorId);
   console.log(user?.id);
-
-  /* 
-yeno
-kp_0b4194037b0c449486612171e1f0c6de
-mathiasgugu
-kp_6e6ca24f41d045968e12c5f3927798c7
-*/
 
   let userOwnsPost;
   if (user) {
@@ -102,7 +96,7 @@ kp_6e6ca24f41d045968e12c5f3927798c7
 export default Page;
 
 const fetchData = async (id: string | null) => {
-  const post = await fetch("http://localhost:3000/api/getpost", {
+  const post = await fetch(absoluteUrl("/api/getpost"), {
     method: "POST",
     body: JSON.stringify({
       id,

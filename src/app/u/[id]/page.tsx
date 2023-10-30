@@ -8,7 +8,7 @@ const Page = async (context: any) => {
   const user = await useUser();
   const request = await fetch(
     absoluteUrl(
-      `http://localhost:3000/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`
+      `/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`
     ),
     { method: "GET" }
   );
