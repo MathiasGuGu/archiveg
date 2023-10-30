@@ -54,12 +54,11 @@ const Page = () => {
   const [id, setId] = useState<any>(null);
 
   useEffect(() => {
-    const getUser = async () => {
+    (async () => {
       const user = await useUser();
       const id = user.id;
       setId(id);
-    };
-    getUser();
+    })();
   }, []);
 
   const [filePath, setFilePath] = useState<String | null>("");
