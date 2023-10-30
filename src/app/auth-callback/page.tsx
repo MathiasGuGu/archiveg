@@ -9,6 +9,8 @@ const page = async () => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
 
+  console.log(user);
+
   if (!user) {
     console.error("No User To Proccess");
     redirect("/");
@@ -20,11 +22,10 @@ const page = async () => {
     },
   });
 
-  console.log(!!userInDb);
-
   if (!userInDb) {
     await prisma.users.create({
       data: {
+        userId: user.id,
         email: user.email,
         name: user.given_name,
       },

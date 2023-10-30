@@ -5,7 +5,7 @@ const EditorShowcase = () => {
   return (
     <div className="flex w-full items-center justify-center mt-32 flex-col gap-5">
       <div className="w-full max-w-7xl flex flex-col-reverse md:flex-row-reverse gap-3 ">
-        <div className="bg-white w-full md:w-1/2 h-[500px]  flex flex-col justify-between  gap-3 px-8 py-4">
+        <div className=" w-full md:w-1/2 h-[500px]  flex flex-col justify-between  gap-3 px-8 py-4">
           <div className="flex flex-col gap-3">
             <h2 className="text-3xl font-bold text-blue-950">
               Easily create you own article with the editor.
@@ -24,7 +24,7 @@ const EditorShowcase = () => {
           </div>
           <a
             href="/"
-            className="bg-blue-700 text-blue-50 py-2 rounded flex items-center justify-center  justify-self-end"
+            className="bg-blue-700 h-10 relative z-30 text-blue-50 py-2 rounded flex items-center justify-center  justify-self-end"
           >
             Start Writing
           </a>

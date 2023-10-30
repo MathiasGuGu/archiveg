@@ -1,3 +1,4 @@
+import { useDebounce } from "@/hooks/useDebounce";
 import useTags from "@/hooks/useTags";
 import { cn } from "@/lib/utils";
 import {
@@ -9,7 +10,7 @@ import {
   Plus,
   X,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const FeedFilter = ({
@@ -21,7 +22,11 @@ const FeedFilter = ({
   setTagInput,
 }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+
+  const debounceValue = useDebounce(searchValue, 500);
   const tags = useTags();
+
   const handleRemoveTag = (index, value) => {
     setTagQuery((prev) => {
       const newTags = prev.filter((tag) => {
@@ -44,17 +49,21 @@ const FeedFilter = ({
     setDateQuery((prev) => (prev === "old" ? "new" : "old"));
   };
 
+  useEffect(() => {
+    setSearchQuery(debounceValue);
+  }, [debounceValue]);
+
   return (
     <aside
       className={cn({
-        "flex mt-14 flex-col z-50 md:flex-col h-screen overflow-y-scroll px-6 pb-12  fixed left-0 top-0  ":
+        "flex mt-14 flex-col z-50 md:flex-col pt-6 h-screen overflow-y-scroll px-6 pb-12  fixed left-0 top-0  ":
           true,
-        "w-[350px] shadow bg-white": isFilterOpen,
-        "w-16 md:w-32 md:bg-white": !isFilterOpen,
+        "w-[350px]  bg-white ": isFilterOpen,
+        "w-16 md:w-24 md:bg-white": !isFilterOpen,
       })}
     >
       <div
-        className="w-full px-2 py-2 hover:cursor-pointer bg-white hover:bg-zinc-300/30 h-auto flex items-center gap-3 justify-center"
+        className="w-full px-2 py-2 hover:cursor-pointer bg-white hover:bg-zinc-300/30 h-auto  rounded flex items-center gap-3 justify-center"
         onClick={() => {
           setIsFilterOpen((prev) => !prev);
         }}
@@ -65,7 +74,7 @@ const FeedFilter = ({
       {isFilterOpen && (
         <form
           className={cn({
-            "w-full h-auto flex flex-col bg-white  px-5 pt-4  md:pt-28 pb-12 gap-12":
+            "w-full h-auto flex flex-col bg-white  px-5 pt-4  md:pt-6 pb-12 gap-12":
               true,
           })}
         >
@@ -73,32 +82,13 @@ const FeedFilter = ({
             <div className="text-xl text-zinc-700">Search for a post</div>
             <input
               onInput={(e) => {
-                setSearchQuery(e.currentTarget.value);
+                setSearchValue(e.target.value);
               }}
               className=" border px-3 h-10 rounded placeholder:text-sm"
               placeholder="Writing an article on archive G"
             ></input>
           </div>
-          {/* 
-      <div className="flex gap-3">
-        <div
-          onClick={() => {
-            changeDateQuery();
-          }}
-          className="px-3 py-2 border rounded hover:bg-zinc-200/30 hover:cursor-pointer flex gap-1"
-        >
-          <CalendarClock strokeWidth={1} />
-          {dateQuery === "new" ? (
-            <ArrowDown strokeWidth={1} />
-          ) : (
-            <ArrowUp strokeWidth={1}></ArrowUp>
-          )}
-        </div>
-        <div className="px-3 py-2 border rounded hover:bg-zinc-200/30 hover:cursor-pointer flex gap-1">
-          <Heart strokeWidth={1} /> <ArrowDown strokeWidth={1} />
-        </div>
-      </div>
-*/}
+
           <div className="w-full flex flex-wrap gap-4">
             <div>Selected Tags</div>
             <div

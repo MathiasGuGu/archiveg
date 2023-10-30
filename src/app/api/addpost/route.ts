@@ -30,13 +30,12 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const { getUser } = getKindeServerSession();
   const user = getUser();
   const request = await req.json();
-  const { image, title, body, tags } = request;
+  const { image, title, body, tags, id } = request;
 
   // map through tags in body
 
   tags.forEach(async (tag) => {
     const check = tag.toLowerCase();
-    console.log(check);
     const DbTag = await prisma.tags.findFirst({
       where: {
         title: tag,
@@ -82,6 +81,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       slug: "something",
       image,
       author: user?.given_name,
+      authorId: id,
       authorEmail: user?.email,
       tags,
     },

@@ -6,9 +6,11 @@ import { FileEdit } from "lucide-react";
 import MarkdownParser from "@/components/MarkdownParser";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import DeleteBtn from "@/components/DeleteBtn";
+import Link from "next/link";
 const Page = async (context) => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
+
   const id = context.params.slug;
   const getData = async () => {
     const req = await fetchData(id);
@@ -16,6 +18,16 @@ const Page = async (context) => {
     return data;
   };
   const post = await getData();
+
+  console.log(post.authorId);
+  console.log(user?.id);
+
+  /* 
+yeno
+kp_0b4194037b0c449486612171e1f0c6de
+mathiasgugu
+kp_6e6ca24f41d045968e12c5f3927798c7
+*/
 
   let userOwnsPost;
   if (user) {
@@ -44,7 +56,7 @@ const Page = async (context) => {
           <div className="flex gap-6 items-center justify-between mb-6 bg-zinc-100 px-4 py-4 rounded-xl">
             <div className="flex gap-5">
               <div className="h-8 w-8 rounded-full bg-blue-900"></div>
-              <p className="text-sm">
+              <Link href={`/u/${post?.authorId}?s=archive`} className="text-sm">
                 {post?.author ? (
                   <div className="flex flex-col ">
                     <p className="text-xs">Written by</p>
@@ -53,7 +65,7 @@ const Page = async (context) => {
                 ) : (
                   <Skeleton />
                 )}
-              </p>
+              </Link>
             </div>
           </div>
           <h1 className="text-left text-3xl  md:font-bold text-blue-950">

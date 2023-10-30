@@ -1,17 +1,23 @@
 import NavbarUserMenu from "./NavbarUserMenu";
 import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Package } from "lucide-react";
+import useUser from "@/hooks/useUser";
 
-const Navbar = () => {
-  const { getUser } = getKindeServerSession();
-  const user = getUser();
+const Navbar = async () => {
+  const user = await useUser();
+  const request = await fetch(
+    `http://localhost:3000/api/user/getSingleUser?id=${user?.id}&includePosts=false`,
+    { method: "GET" }
+  );
+  const { data } = await request.json();
   return (
     <div className="flex items-center z-50 bg-white justify-center h-14 w-full fixed top-0 left-0">
       <MobileNavbar user={user}></MobileNavbar>
 
       <div className=" max-w-[90rem] md:flex w-full h-full items-center justify-evenly hidden">
-        <h1 className="text-xl flex gap-1 items-center justify-center font-bold text-blue-950">
+        <h1 className="text-xl flex gap-1 items-center justify-center font-semibold text-primary">
+          <Package size={27} strokeWidth={1} />
           archiveg
         </h1>
 
@@ -32,7 +38,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <NavbarUserMenu user={user}></NavbarUserMenu>
+        <NavbarUserMenu user={user} data={data}></NavbarUserMenu>
       </div>
     </div>
   );

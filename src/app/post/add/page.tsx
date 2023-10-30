@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { UploadDropzone } from "@/lib/uploadthing";
 import { Ghost, Loader2, MoveLeft, X } from "lucide-react";
 import { toast } from "sonner";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import AddPostSettings from "@/components/AddPostSettings";
 import AddPostBodyElements from "@/components/AddPostBodyElements";
 import MarkdownParser from "@/components/MarkdownParser";
+import { userContext } from "@/app/providers";
 
 /*EXAMPLE POST
 
@@ -50,6 +51,10 @@ I usually use Unsplash for examples as it seamlesly integrates with markdown
 */
 
 const Page = () => {
+  const { current } = useContext(userContext);
+  let id;
+
+  current?.id ? (id = current.id) : (id = null);
   const [filePath, setFilePath] = useState<String | null>("");
   const [articlePreview, setArticlePreview] = useState<boolean>(true);
   const [showExampleText, setShowExampleText] = useState<boolean>(true);
@@ -99,6 +104,7 @@ const Page = () => {
         title,
         body,
         tags,
+        id,
       }),
     });
     const json = await req.json();

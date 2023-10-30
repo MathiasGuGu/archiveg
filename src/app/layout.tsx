@@ -5,6 +5,9 @@ import Navbar from "@/components/Navbar";
 import AddPostBtn from "@/components/AddPostBtn";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
+import useUser from "@/hooks/useUser";
+import { createContext } from "react";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +21,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const user = useUser();
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <Toaster richColors />
         <Navbar></Navbar>
-
-        {children}
+        <Providers user={user}>{children}</Providers>
       </body>
     </html>
   );

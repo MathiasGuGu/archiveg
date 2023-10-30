@@ -1,22 +1,30 @@
 "use client";
 
 import { LogOut, Package, Settings, User2, Heart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-const NavbarUserMenu = ({ user }: any) => {
+const NavbarUserMenu = ({ user, data }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
   const [isMenuAdmin, setIsMenuAdmin] = useState<Boolean>(false);
   return (
     <div className="relative flex items-center  gap-5">
       <div>
-        <p className="text-xs  text-zinc-600">{user?.given_name}</p>
+        <p className="text-xs  text-zinc-600">{data?.name}</p>
       </div>
       <div
         onClick={() => {
           setIsMenuOpen((prev) => !prev);
         }}
-        className="h-11 aspect-square bg-blue-950 rounded-full relative shadow hover:cursor-pointer duration-100"
-      ></div>
+        className="h-11 aspect-square relative bg-blue-950 rounded-full  shadow hover:cursor-pointer duration-100"
+      >
+        <Image
+          alt="avatar"
+          fill
+          className="rounded-full object-cover"
+          src={data?.avatar}
+        ></Image>
+      </div>
       {isMenuOpen && (
         <div className="absolute shadow-xl border-t h-auto w-80 rounded bg-white px-4 py-5  top-14 left-1/2 -translate-x-1/2 flex flex-col gap-12">
           <ul className="flex flex-col gap-3 text-sm ">
