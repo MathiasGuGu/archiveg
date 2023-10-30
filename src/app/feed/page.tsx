@@ -1,12 +1,7 @@
 "use client";
 import FeedFilter from "@/components/FeedFilter";
-import Navbar from "@/components/Navbar";
 import PostContainer from "@/components/PostContainer";
-import { ArrowDown, CalendarClock, Heart, List, Plus, X } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useState } from "react";
-import { toast } from "sonner";
 
 enum DATE {
   NEWEST = "newest",
@@ -29,13 +24,6 @@ const Page = () => {
         backgroundSize: "19px 19px",
       }}
     >
-      {/* 
-        FilterForm
-          -> Filter by date
-          -> Filter by tags 
-          -> Filter by likes
-          -> Filter by searchquery
-        */}
       <FeedFilter
         setSearchQuery={setSearchQuery}
         setDateQuery={setDateQuery}

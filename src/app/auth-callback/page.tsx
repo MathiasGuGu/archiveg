@@ -9,8 +9,6 @@ const page = async () => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
 
-  console.log(user);
-
   if (!user) {
     console.error("No User To Proccess");
     redirect("/");
