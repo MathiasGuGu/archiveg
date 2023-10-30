@@ -16,7 +16,7 @@ const tags: Tag[] = [
 const TagsExample: React.FC = () => {
   return (
     <div
-      className="w-[80%] flex flex-col items-center justify-center  gap-2 py-12 px-12 bg-blue-950 text-white rounded-xl shadow-xl "
+      className="w-full md:w-[80%] flex flex-col items-center justify-center  gap-2 py-12 px-12 bg-blue-950 text-white rounded-xl shadow-xl "
       style={{
         backgroundImage:
           " radial-gradient(#f5f5f530 0.9500000000000001px, rgb(15 12 70) 0.9500000000000001px)",
@@ -37,7 +37,7 @@ const TagsExample: React.FC = () => {
           })}
         </div>
         <div className="flex flex-col gap-2 w-full h-auto py-5 items-center justify-center">
-          <h2 className="text-4xl font-bold text-blue-600">
+          <h2 className="text-4xl font-bold text-blue-600 text-center">
             Browse articles by Tags
           </h2>
           <div className="text-sm max-w-sm text-center">

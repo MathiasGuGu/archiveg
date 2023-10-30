@@ -4,6 +4,11 @@ import MobileNavbar from "./MobileNavbar";
 import { Package } from "lucide-react";
 import useUser from "@/hooks/useUser";
 import { absoluteUrl } from "@/lib/utils";
+import {
+  LoginLink,
+  LogoutLink,
+  RegisterLink,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
 const Navbar = async () => {
   const user = await useUser();
@@ -17,8 +22,8 @@ const Navbar = async () => {
   const avatar = data?.avatar;
 
   return (
-    <div className="flex items-center z-50 bg-white justify-center h-14 w-full fixed top-0 left-0">
-      <MobileNavbar user={user}></MobileNavbar>
+    <div className="flex items-center z-50 bg-white justify-center h-14 w-screen fixed top-0 left-0">
+      <MobileNavbar avatar={avatar} user={user}></MobileNavbar>
 
       <div className=" max-w-[90rem] md:flex w-full h-full items-center justify-evenly hidden">
         <h1 className="text-xl flex gap-1 items-center justify-center font-semibold text-primary">
@@ -43,11 +48,22 @@ const Navbar = async () => {
           )}
         </div>
 
-        <NavbarUserMenu
-          avatar={avatar}
-          user={user}
-          data={data}
-        ></NavbarUserMenu>
+        {user ? (
+          <NavbarUserMenu
+            avatar={avatar}
+            user={user}
+            data={data}
+          ></NavbarUserMenu>
+        ) : (
+          <div className="flex gap-3">
+            <LoginLink className="px-3 py-1 border border-primary rounded">
+              Login
+            </LoginLink>
+            <RegisterLink className="px-3 py-1 bg-blue-700 text-blue-50 rounded">
+              Register
+            </RegisterLink>
+          </div>
+        )}
       </div>
     </div>
   );

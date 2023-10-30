@@ -11,7 +11,7 @@ import Anouncement from "@/components/Anouncement";
 export default function Home() {
   return (
     <div
-      className="w-full flex flex-col gap-12 pt-48 bg-opacity-40 "
+      className="w-full flex flex-col gap-12 pt-48 bg-opacity-40 overflow-hidden "
       style={{
         backgroundImage:
           " radial-gradient(#444cf750 0.9500000000000001px, #e5e5f750 0.9500000000000001px)",

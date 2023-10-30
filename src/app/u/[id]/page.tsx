@@ -15,9 +15,7 @@ const Page = async (context: any) => {
   );
   const { data, posts } = await request.json();
   const { banner, avatar, name, email, userId } = data;
-  console.log(name, email);
   const isLoggedInUser = user?.id === userId;
-  console.log(isLoggedInUser);
   return (
     <div className="mt-14 flex flex-col w-full h-auto">
       <div className="w-full h-64 bg-gradient-to-tr from-purple-600 to-pink-600/50 relative">
@@ -34,7 +32,7 @@ const Page = async (context: any) => {
             strokeWidth={1}
           ></Camera>
         </div>
-        <div className="w-28 h-28 border-2  border-white rounded-full bg-gradient-to-br group from-blue-500 to-blue-700 absolute -bottom-10 left-48">
+        <div className="w-28 h-28 border-2  border-white rounded-full bg-gradient-to-br group from-blue-500 to-blue-700 absolute md:-bottom-10 md:left-48 -bottom-8 left-1/2 -translate-x-1/2">
           <div className="w-full h-full rounded-full">
             <Image
               alt="User avatar"
@@ -45,7 +43,7 @@ const Page = async (context: any) => {
           </div>
         </div>
       </div>
-      <div className="mt-14  px-36 font-bold">
+      <div className="mt-14  md:px-36 font-bold md:w-auto flex items-center md:items-start md:justify-start justify-center w-full ">
         <div className="flex flex-col">
           <p>{name}</p>
           <p className="text-sm font-light text-zinc-400">{email}</p>

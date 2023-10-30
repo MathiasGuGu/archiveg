@@ -25,8 +25,8 @@ const Navigation = ({ user, context, data, posts }: any) => {
   return (
     <div className="w-full h-auto flex  justify-center  mt-24">
       <div className="w-full max-w-7xl  flex flex-col md:flex-row md:justify-between">
-        <div className="w-1/3 md:h-[400px] ">
-          <ul className="w-full h-full flex  md:flex-col">
+        <div className="w-full md:w-1/3 md:h-[400px] ">
+          <ul className="w-full  h-full flex flex-wrap  md:flex-col">
             <li
               onClick={() => updateSearchParams("archive")}
               className={cn({
@@ -40,7 +40,7 @@ const Navigation = ({ user, context, data, posts }: any) => {
             </li>
 
             {isLoggedInUser && (
-              <>
+              <div className="w-full ">
                 <li
                   onClick={() => updateSearchParams("account")}
                   className={cn({
@@ -50,12 +50,14 @@ const Navigation = ({ user, context, data, posts }: any) => {
                   })}
                 >
                   <Settings strokeWidth={1}></Settings>{" "}
-                  <p className="text-blue-950 text-sm">Account Settings</p>
+                  <p className="text-blue-950 text-sm w-full">
+                    Account Settings
+                  </p>
                 </li>
                 <li
                   onClick={() => updateSearchParams("settings")}
                   className={cn({
-                    "w-full h-14 hover:bg-blue-950/5 flex items-center px-12 gap-6  border-b-zinc-900/10  hover:cursor-pointer":
+                    "w-full md:w-full h-14 hover:bg-blue-950/5 flex items-center px-12 gap-6  border-b-zinc-900/10  hover:cursor-pointer":
                       true,
                     "bg-blue-950/5": activeSection === "settings",
                   })}
@@ -63,7 +65,7 @@ const Navigation = ({ user, context, data, posts }: any) => {
                   <AppWindow strokeWidth={1}></AppWindow>{" "}
                   <p className="text-blue-950 text-sm">Application Settings</p>
                 </li>
-              </>
+              </div>
             )}
           </ul>
         </div>

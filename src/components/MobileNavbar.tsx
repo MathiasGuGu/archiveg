@@ -6,10 +6,9 @@ import NavbarUserMenu from "./NavbarUserMenu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const MobileNavbar = ({ user, children }: any) => {
+const MobileNavbar = ({ user, avatar, children }: any) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  console.log(isSidebarOpen);
   return (
     <div className="flex md:hidden relative w-full h-full items-center justify-between px-4">
       <h1 className="text-xl flex gap-1 items-center justify-center font-bold text-blue-950">
@@ -20,12 +19,12 @@ const MobileNavbar = ({ user, children }: any) => {
           {!user ? (
             <>{children}</>
           ) : (
-            <NavbarUserMenu user={user}></NavbarUserMenu>
+            <NavbarUserMenu avatar={avatar} user={user}></NavbarUserMenu>
           )}
         </div>
         <div
           onClick={() => setIsSidebarOpen((prev) => !prev)}
-          className="bg-blue-950 text-blue-50 rounded-lg h-fit w-fit px-5 py-2 text-sm hover:cursor-pointer "
+          className="bg-primary text-blue-50 rounded-full h-fit w-fit px-5 py-2 text-sm hover:cursor-pointer "
         >
           Menu
         </div>
@@ -38,26 +37,17 @@ const MobileNavbar = ({ user, children }: any) => {
         })}
       >
         <ul className="w-full h-full flex flex-col px-6 py-12 gap-7">
-          <Link
-            href={""}
-            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
-          >
+          <Link href={"/"} className=" border-b  px-2 rounded py-1 ">
             <div className="font-bold text-primary">Home</div>
             <p className="text-sm text-zinc-500">Welcome to the homepage</p>
           </Link>
-          <Link
-            href={""}
-            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
-          >
+          <Link href={"/feed"} className=" border-b px-2 rounded py-1 ">
             <div className="font-bold text-primary">Feed</div>
             <p className="text-sm text-zinc-500">
               View all your favourite posts
             </p>
           </Link>
-          <Link
-            href={""}
-            className=" border-[1px] border-zinc-300 px-2 rounded py-1 "
-          >
+          <Link href={"/post/add"} className=" px-2 rounded py-1 ">
             <div className="font-bold text-primary">Add Post</div>
             <p className="text-sm text-zinc-500">In the mood for writing?</p>
           </Link>
