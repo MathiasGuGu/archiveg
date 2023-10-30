@@ -38,10 +38,7 @@ const Page = () => {
         */}
       <FeedFilter
         setSearchQuery={setSearchQuery}
-        dateQuery={dateQuery}
         setDateQuery={setDateQuery}
-        likeQuery={likeQuery}
-        setLikeQuery={setLikeQuery}
         tagQuery={tagQuery}
         setTagQuery={setTagQuery}
         tagInput={tagInput}

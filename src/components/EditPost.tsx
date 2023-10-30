@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 import Markdown from "react-markdown";
 
-const EditPost = ({ postData, setIsEditing }) => {
+const EditPost = ({ postData, setIsEditing }: any) => {
   return (
     <div className="w-full h-auto relative flex items-center justify-center">
       <div className="fixed rounded-xl bg-blue-950 py-2 shadow-xl   px-8 h-auto bottom-12 right-32  flex flex-col gap-5 items-end justify-end">
@@ -33,6 +33,8 @@ const EditPost = ({ postData, setIsEditing }) => {
                 const { node, ...rest } = props;
                 return (
                   <input
+                    // @ts-ignore: Unreachable code error
+
                     id={rest.children}
                     className=" border px-2 py-3 rounded border-zinc-600  border-dashedfont-bold text-xl mt-12"
                     defaultValue={"#" + rest.children}
@@ -43,8 +45,12 @@ const EditPost = ({ postData, setIsEditing }) => {
                 const { node, ...rest } = props;
                 return (
                   <textarea
+                    // @ts-ignore: Unreachable code error
+
                     id={rest.children}
                     className=" border px-12 py-5 rounded w-full h-56 border-zinc-600 border-dashed "
+                    // @ts-ignore: Unreachable code error
+
                     defaultValue={rest.children}
                   ></textarea>
                 );
@@ -53,8 +59,12 @@ const EditPost = ({ postData, setIsEditing }) => {
                 const { node, ...rest } = props;
                 return (
                   <input
+                    // @ts-ignore: Unreachable code error
+
                     id={rest.children}
                     className=" border px-2 py-3 rounded border-zinc-600  border-dotted font-bold text-xl "
+                    // @ts-ignore: Unreachable code error
+
                     defaultValue={rest.children}
                   ></input>
                 );
@@ -64,8 +74,10 @@ const EditPost = ({ postData, setIsEditing }) => {
                 const { node, ...rest } = props;
                 return (
                   <input
+                    // @ts-ignore: Unreachable code error
                     id={rest.children}
                     className=" border px-2 py-3 rounded border-blue-600  border-dotted font-bold text-xl"
+                    // @ts-ignore: Unreachable code error
                     defaultValue={rest.children}
                   ></input>
                 );

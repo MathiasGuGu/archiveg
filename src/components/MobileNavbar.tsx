@@ -6,7 +6,7 @@ import NavbarUserMenu from "./NavbarUserMenu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-const MobileNavbar = ({ user, children }) => {
+const MobileNavbar = ({ user, children }: any) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   console.log(isSidebarOpen);

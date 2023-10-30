@@ -1,11 +1,15 @@
 "use client";
 import React from "react";
+// @ts-ignore: Unreachable code error
+
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// @ts-ignore: Unreachable code error
+
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Image from "next/image";
-const MarkdownParser = ({ bodyText }) => {
+const MarkdownParser = ({ bodyText }: any) => {
   return (
     <div>
       <Markdown
@@ -17,6 +21,8 @@ const MarkdownParser = ({ bodyText }) => {
 
             return (
               <h2
+                // @ts-ignore: Unreachable code error
+
                 id={rest.children}
                 className="  font-bold text-2xl mt-12 mb-3 text-blue-950"
                 {...rest}
@@ -28,6 +34,8 @@ const MarkdownParser = ({ bodyText }) => {
 
             return (
               <h3
+                // @ts-ignore: Unreachable code error
+
                 id={rest.children}
                 className="  font-semibold text-xl   text-blue-950"
                 {...rest}
@@ -40,7 +48,6 @@ const MarkdownParser = ({ bodyText }) => {
             return match ? (
               <SyntaxHighlighter
                 {...rest}
-                children={String(children).replace(/\n$/, "")}
                 wrapLines={true}
                 style={darcula}
                 language={match[1]}
@@ -69,6 +76,7 @@ const MarkdownParser = ({ bodyText }) => {
           strong(props) {
             const { node, ...rest } = props;
             return (
+              // @ts-ignore: Unreachable code error
               <p
                 className="bg-zinc-300/30 w-fit inline px-2 py-1 rounded text-red-700/70 "
                 {...rest}
@@ -89,7 +97,11 @@ const MarkdownParser = ({ bodyText }) => {
             return (
               <Image
                 alt="Blog Image"
+                // @ts-ignore: Unreachable code error
+
                 width={600}
+                // @ts-ignore: Unreachable code error
+
                 height={500}
                 className="rounded-lg"
                 {...rest}

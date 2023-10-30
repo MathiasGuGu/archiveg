@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { NextApiResponse } from "next";
 import { NextApiRequest } from "next";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequestest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   const data = await prisma.tags.findMany({
     orderBy: {
       count: "desc",

@@ -29,6 +29,7 @@ const Post = (data: Post) => {
     image,
     createdAt,
     tags,
+    // @ts-ignore: Unreachable code error
   } = data?.post;
 
   return (
@@ -50,9 +51,11 @@ const Post = (data: Post) => {
             <div className="flex flex-col md:flex-row gap-4 items-center mb-3 ">
               <h2 className="text-2xl  font-bold text-blue-950">{title}</h2>
               <div className="flex flex-wrap gap-3">
-                {tags.map((tag, index) => {
+                {tags.map((tag: any, index: Number) => {
                   return (
                     <div
+                      // @ts-ignore: Unreachable code error
+
                       key={index}
                       className="h-full  px-3 text-sm  bg-blue-950/10 text-blue-700 rounded flex items-center justify-center"
                     >
@@ -74,9 +77,11 @@ const Post = (data: Post) => {
             <div className="flex flex-col md:flex-row gap-4 items-center  mb-3 ">
               <h2 className="text-2xl  font-bold text-blue-950">{title}</h2>
               <div className="flex flex-wrap gap-3">
-                {tags.map((tag, index) => {
+                {tags.map((tag: any, index: Number) => {
                   return (
                     <div
+                      // @ts-ignore: Unreachable code error
+
                       key={index}
                       className="h-full  px-3 text-sm  bg-blue-950/10 text-blue-700 rounded flex items-center justify-center"
                     >
@@ -94,14 +99,14 @@ const Post = (data: Post) => {
   );
 };
 
-export const PostWithImage = ({ children }) => {
+export const PostWithImage = ({ children }: any) => {
   return (
     <div className="w-full h-auto flex flex-col max-h-96 max-w-3xl bg-white">
       {children}
     </div>
   );
 };
-export const PostWithoutImage = ({ children }) => {
+export const PostWithoutImage = ({ children }: any) => {
   return (
     <div className="w-full h-auto flex flex-col max-w-3xl max-h-96 overflow-hidden bg-white">
       {children}

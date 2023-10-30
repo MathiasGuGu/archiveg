@@ -7,20 +7,20 @@ const usePosts = () => {
   const searchParams = useSearchParams()!;
   const dateFilter = searchParams.get("sort");
   console.log(dateFilter);
-  const fetchData = async () => {
-    const response = await fetch(
-      `http://localhost:3000/api/addpost?date=${dateFilter}&tagsQuery=react&likeQuery=up`,
-      {
-        method: "GET",
-      }
-    );
-    const data = await response.json();
-    setPosts(data);
-  };
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `http://localhost:3000/api/addpost?date=${dateFilter}&tagsQuery=react&likeQuery=up`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+      setPosts(data);
+    };
     fetchData();
-  }, []);
+  }, [dateFilter]);
   return posts;
 };
 

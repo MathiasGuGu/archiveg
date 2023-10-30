@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   const deUrl = req.url?.split("?")[1];
   const query = deUrl?.split("&");
   const date = query[0].split("=")[1];
@@ -26,7 +26,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
   });
 }
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const { getUser } = getKindeServerSession();
   const user = getUser();
   const request = await req.json();
@@ -34,7 +34,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
   // map through tags in body
 
-  tags.forEach(async (tag) => {
+  tags.forEach(async (tag: any) => {
     const check = tag.toLowerCase();
     const DbTag = await prisma.tags.findFirst({
       where: {
@@ -80,9 +80,9 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       body,
       slug: "something",
       image,
-      author: user?.given_name,
+      author: user.given_name || "" ,
       authorId: id,
-      authorEmail: user?.email,
+      authorEmail: user?.email || "",
       tags,
     },
   });
@@ -97,7 +97,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   );
 }
 
-export async function PUT(req: NextApiRequest, res: NextApiResponse) {
+export async function PUT(req: NextRequest, res: NextResponse) {
   await prisma.post.update({
     where: {
       slug: "lorem",

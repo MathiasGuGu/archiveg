@@ -7,7 +7,7 @@ import MarkdownParser from "@/components/MarkdownParser";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import DeleteBtn from "@/components/DeleteBtn";
 import Link from "next/link";
-const Page = async (context) => {
+const Page = async (context: any) => {
   const { getUser } = getKindeServerSession();
   const user = getUser();
 

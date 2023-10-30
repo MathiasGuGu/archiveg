@@ -13,8 +13,8 @@ export function absoluteUrl(path: string) {
 }
 
 export function constructMetadata({
-  title = "Magnify - Easily read and write to your PDF",
-  description = "Magnify is an Open Source Software to make chatting to your PDF files Easy",
+  title = "ArhiveG - Easily find, read and post articles.",
+  description = "Archiveg is an open source blog platform that lets you easily find, read and post articles.",
   image = "/thumbnail.png",
   icons = "/favicon.ico",
   noIndex = false,
