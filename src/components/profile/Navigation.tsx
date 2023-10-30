@@ -11,7 +11,6 @@ const Navigation = ({ user, context, data, posts }: any) => {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("");
 
-  const id = context.params.id;
   const section = context.searchParams.s;
 
   const isLoggedInUser = user?.id === data?.userId;

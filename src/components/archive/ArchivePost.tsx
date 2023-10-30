@@ -2,7 +2,6 @@
 import { Edit, FileQuestion, Settings, X } from "lucide-react";
 import React, { useState } from "react";
 import DeleteBtn from "../DeleteBtn";
-import useUser from "@/hooks/useUser";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +18,7 @@ const ArchivePost = ({ post, user, data }: any) => {
   );
 };
 
-export const BigArchivePost = ({ post, user, data }: any) => {
+export const BigArchivePost = ({ post }: any) => {
   return (
     <Link
       href={`/a/${post.id}`}

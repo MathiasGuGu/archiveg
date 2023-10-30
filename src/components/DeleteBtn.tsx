@@ -50,7 +50,7 @@ const DeleteBtn = ({ id, children, callbackRoute }: any) => {
 export default DeleteBtn;
 
 const deletePost = async (id: string | null) => {
-  const post = await fetch(absoluteUrl("http://localhost:3000/api/getpost"), {
+  const post = await fetch(absoluteUrl("/api/getpost"), {
     method: "DELETE",
     body: JSON.stringify({
       id,

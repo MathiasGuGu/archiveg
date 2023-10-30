@@ -13,7 +13,6 @@ const Page = async (context: any) => {
     { method: "GET" }
   );
   const { data, posts } = await request.json();
-
   const isLoggedInUser = user?.id === data?.userId;
   return (
     <div className="mt-14 flex flex-col w-full h-auto">

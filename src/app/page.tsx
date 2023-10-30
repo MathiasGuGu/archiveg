@@ -2,21 +2,11 @@ import AddPostBtn from "@/components/AddPostBtn";
 import EditorShowcase from "@/components/EditorShowcase";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import PostContainer from "@/components/PostContainer";
 import Quill from "@/components/Quill";
 import TagsExample from "@/components/TagsExample";
 import Tutorial from "@/components/Tutorial";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/server";
-import Line from "../../public/svg/handdrawnline.svg";
-import Image from "next/image";
 import Anouncement from "@/components/Anouncement";
-
-/* 
-background-color: #e5e5f7;
-opacity: 0.4;
-background-image: radial-gradient(#444cf7 0.9500000000000001px, #e5e5f7 0.9500000000000001px);
-background-size: 19px 19px;
-*/
 
 export default function Home() {
   return (

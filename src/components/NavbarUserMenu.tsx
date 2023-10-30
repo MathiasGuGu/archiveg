@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 const NavbarUserMenu = ({ user, data }: any) => {
+  console.log(data);
   const [isMenuOpen, setIsMenuOpen] = useState<Boolean>(false);
-  const [isMenuAdmin, setIsMenuAdmin] = useState<Boolean>(false);
   return (
     <div className="relative flex items-center  gap-5">
       <div>

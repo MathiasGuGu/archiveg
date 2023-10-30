@@ -1,6 +1,5 @@
 "use client";
 
-import useUser from "@/hooks/useUser";
 import { createContext, useEffect, useState } from "react";
 
 type UserContextType = {

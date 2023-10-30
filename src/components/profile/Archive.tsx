@@ -1,5 +1,3 @@
-import useArchive from "@/hooks/useArchive";
-import { Delete, Edit, FileQuestion, Settings, X } from "lucide-react";
 import React from "react";
 import ArchivePost from "../archive/ArchivePost";
 
