@@ -12,7 +12,7 @@ import AddPostBodyElements from "@/components/AddPostBodyElements";
 import MarkdownParser from "@/components/MarkdownParser";
 import useUser from "@/hooks/useUser";
 
-const getData = async () => {
+const GetData = async () => {
   const user = await useUser();
   const id = user.id;
   return id;
@@ -22,7 +22,7 @@ const Page = () => {
   const [id, setId] = useState<any>(null);
 
   useEffect(() => {
-    setId(getData());
+    setId(GetData());
   }, []);
 
   const [filePath, setFilePath] = useState<String | null>("");
