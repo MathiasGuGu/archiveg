@@ -22,7 +22,10 @@ const Page = () => {
   const [id, setId] = useState<any>(null);
 
   useEffect(() => {
-    setId(GetData());
+    (async () => {
+      const id = await GetData();
+      setId(id);
+    })();
   }, []);
 
   const [filePath, setFilePath] = useState<String | null>("");
