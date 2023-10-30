@@ -59,8 +59,7 @@ const AddPostBodyElements = ({
   handleAddMarkdown,
   showExampleText,
   setShowExampleText,
-}) => {
-
+}: any) => {
   return (
     <div className="w-full h-auto max-w-5xl   flex flex-wrap gap-2 p-1 text-sm text-zinc-700">
       <div

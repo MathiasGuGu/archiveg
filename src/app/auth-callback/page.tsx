@@ -18,16 +18,16 @@ const page = async () => {
 
   const userInDb = await prisma.users.findFirst({
     where: {
-      email: user.email,
+      email: user.email || "",
     },
   });
 
   if (!userInDb) {
     await prisma.users.create({
       data: {
-        userId: user.id,
-        email: user.email,
-        name: user.given_name,
+        userId: user.id || "",
+        email: user.email || "",
+        name: user.given_name || "",
       },
     });
     redirect("/");

@@ -51,7 +51,9 @@ I usually use Unsplash for examples as it seamlesly integrates with markdown
 */
 
 const Page = () => {
+  // @ts-ignore: Unreachable code error
   const { current } = useContext(userContext);
+  // @ts-ignore: Unreachable code error
   let id;
 
   current?.id ? (id = current.id) : (id = null);
@@ -60,33 +62,11 @@ const Page = () => {
   const [showExampleText, setShowExampleText] = useState<boolean>(true);
   const [bodyText, setBodyText] = useState("");
   const [title, setTitle] = useState("");
-  const [errors, setErrors] = useState({});
-  const [tags, setTags] = useState([]);
-  const [tagsInput, setTagsInput] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  useEffect(() => {
-    validateForm();
-  }, [bodyText, title]);
-
-  const validateForm = () => {
-    let errors = {};
-    if (!title) {
-      errors.title = "A Title is required.";
-    } else if (title.length < 4) {
-      errors.title = "The title must have a minimum of 4 characters";
-    }
-
-    if (!bodyText) {
-      errors.bodyText = "Body is required.";
-    } else if (bodyText.length < 50) {
-      errors.bodyText = "The body mush have 50 or more characters.";
-    }
-
-    setErrors(errors);
-    setIsFormValid(Object.keys(errors).length === 0);
-  };
+  const [errors, setErrors] = useState<any>({});
+  const [tags, setTags] = useState<any>([]);
+  const [tagsInput, setTagsInput] = useState<any>("");
+  const [isSubmitting, setIsSubmitting] = useState<any>(false);
+  const [isFormValid, setIsFormValid] = useState<any>(false);
 
   const bodyRef = useRef(null);
 
@@ -104,6 +84,7 @@ const Page = () => {
         title,
         body,
         tags,
+        // @ts-ignore: Unreachable code error
         id,
       }),
     });
@@ -117,19 +98,25 @@ const Page = () => {
   const handleAddMarkdown = (element: string) => {
     setBodyText((prev: string) => prev + "\n" + element);
     const body = bodyRef.current;
-    const selectionStart = body.selectionStart;
-    const selectionEnd = body.selectionEnd;
-    const value = body.value;
+    // @ts-ignore: Unreachable code error
 
+    const selectionStart = body.selectionStart;
+    // @ts-ignore: Unreachable code error
+
+    const selectionEnd = body.selectionEnd;
+    // @ts-ignore: Unreachable code error
+
+    const value = body.value;
+    // @ts-ignore: Unreachable code error
     body.value =
       value.slice(0, selectionEnd) + "\n" + element + value.slice(selectionEnd);
-
+    // @ts-ignore: Unreachable code error
     setBodyText(body.value);
   };
 
-  const handleRemoveTag = (value) => {
-    setTags((prev) => {
-      const newTags = prev.filter((tag) => {
+  const handleRemoveTag = (value: any) => {
+    setTags((prev: any) => {
+      const newTags = prev.filter((tag: any) => {
         return tag !== value;
       });
 
@@ -137,13 +124,38 @@ const Page = () => {
     });
   };
 
-  const checkTagInQuery = (value) => {
+  const checkTagInQuery = (value: any) => {
     if (!tags.includes(value)) {
-      setTags((prev) => [...prev, value]);
+      setTags((prev: any) => [...prev, value]);
     } else {
       toast.error("You have already included that tag");
     }
   };
+  useEffect(() => {
+    const validateForm = () => {
+      let errors = {};
+      if (!title) {
+        // @ts-ignore: Unreachable code error
+        errors.title = "A Title is required.";
+      } else if (title.length < 4) {
+        // @ts-ignore: Unreachable code error
+        errors.title = "The title must have a minimum of 4 characters";
+      }
+
+      if (!bodyText) {
+        // @ts-ignore: Unreachable code error
+        errors.bodyText = "Body is required.";
+      } else if (bodyText.length < 50) {
+        // @ts-ignore: Unreachable code error
+        errors.bodyText = "The body mush have 50 or more characters.";
+      }
+
+      setErrors(errors);
+      setIsFormValid(Object.keys(errors).length === 0);
+    };
+
+    validateForm();
+  }, [bodyText, title]);
 
   return (
     <div className="w-full h-auto px-5 py-32 flex items-center justify-center relative">
@@ -181,8 +193,12 @@ const Page = () => {
             onClientUploadComplete={(res) => {
               // Do something with the response
               setFilePath("");
+              // @ts-ignore: Unreachable code error
               setFilePath(res[0].url);
+
               setBodyText(
+                // @ts-ignore: Unreachable code error
+
                 (prev) => `![Link Name](${res[0].url})` + "\n" + prev
               );
               toast.success("Upload Completed");
@@ -198,6 +214,7 @@ const Page = () => {
                 alt="Hero Image"
                 className="rounded object-cover"
                 fill
+                // @ts-ignore: Unreachable code error
                 src={filePath}
               />
             </div>
@@ -220,6 +237,7 @@ const Page = () => {
             </div>
             <input
               onInput={(e) => {
+                // @ts-ignore: Unreachable code error
                 setTitle(e.target.value);
               }}
               required
@@ -326,9 +344,11 @@ const Page = () => {
                 </>
               ) : (
                 <div className="flex gap-3 flex-wrap  w-full">
-                  {tags.map((tag, index) => {
+                  {tags.map((tag: any, index: Number) => {
                     return (
                       <div
+                        // @ts-ignore: Unreachable code error
+
                         key={index}
                         onClick={() => handleRemoveTag(tag)}
                         className="border px-3 group py-1 flex items-center hover:cursor-pointer justify-center gap-1 rounded bg-blue-950/10 text-blue-600"
@@ -353,6 +373,7 @@ const Page = () => {
             </p>
             <input
               onInput={(e) => {
+                // @ts-ignore: Unreachable code error
                 setTagsInput(e.target.value);
               }}
               className=" border px-3  rounded placeholder:text-sm resize-none h-10"

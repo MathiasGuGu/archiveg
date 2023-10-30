@@ -3,7 +3,7 @@ import Archive from "@/components/profile/Archive";
 import Navigation from "@/components/profile/Navigation";
 import useUser from "@/hooks/useUser";
 import Image from "next/image";
-const page = async (context) => {
+const Page = async (context: any) => {
   const user = await useUser();
   const request = await fetch(
     `http://localhost:3000/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`,
@@ -54,4 +54,4 @@ const page = async (context) => {
   );
 };
 
-export default page;
+export default Page;

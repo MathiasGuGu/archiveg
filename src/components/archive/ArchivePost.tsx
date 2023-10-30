@@ -6,7 +6,7 @@ import useUser from "@/hooks/useUser";
 import Image from "next/image";
 import Link from "next/link";
 
-const ArchivePost = ({ post, user, data }) => {
+const ArchivePost = ({ post, user, data }: any) => {
   const isLoggedInUser = user.id === data.userId;
   return (
     <>
@@ -19,7 +19,7 @@ const ArchivePost = ({ post, user, data }) => {
   );
 };
 
-export const BigArchivePost = ({ post, user, data }) => {
+export const BigArchivePost = ({ post, user, data }: any) => {
   return (
     <Link
       href={`/a/${post.id}`}
@@ -45,7 +45,7 @@ export const BigArchivePost = ({ post, user, data }) => {
   );
 };
 
-export const SmallArchivePost = ({ post, user, data }) => {
+export const SmallArchivePost = ({ post, user, data }: any) => {
   const isLoggedInUser = user.id === data.userId;
   const [postSettingsOpen, setPostSettingsOpen] = useState(false);
   return (

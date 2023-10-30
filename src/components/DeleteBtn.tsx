@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-const DeleteBtn = ({ id, children, callbackRoute }) => {
+const DeleteBtn = ({ id, children, callbackRoute }: any) => {
   const router = useRouter();
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteInProgress, setDeleteInProgress] = useState();

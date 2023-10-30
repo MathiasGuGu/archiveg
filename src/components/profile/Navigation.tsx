@@ -7,7 +7,7 @@ import AppSettings from "./AppSettings";
 import Account from "./Account";
 import { cn } from "@/lib/utils";
 
-const Navigation = ({ user, context, data, posts }) => {
+const Navigation = ({ user, context, data, posts }: any) => {
   const router = useRouter();
   const [activeSection, setActiveSection] = useState("");
 
@@ -18,7 +18,7 @@ const Navigation = ({ user, context, data, posts }) => {
 
   useEffect(() => {
     setActiveSection(section);
-  }, [context]);
+  }, [context, section]);
 
   const updateSearchParams = (param: string) => {
     router.push(`?s=${param}`);

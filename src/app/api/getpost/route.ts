@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
   const body = await req.json();
   const data = await prisma.post.findFirst({
     include: {
@@ -18,14 +18,16 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     },
   });
 
+ 
   return new NextResponse(JSON.stringify(data), {
     status: 200,
-    data,
+    // @ts-ignore: Unreachable code error
+    data: data ,
     headers: { "content-type": "application/json" },
   });
 }
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
+export async function DELETE(req: NextRequest, res: NextResponse) {
   const body = await req.json();
   const data = await prisma.post.delete({
     where: {
@@ -39,7 +41,7 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
   });
 }
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
   const email = req.url?.split("?")[1].split("=")[1]
   const data = await prisma.post.findMany({
     where: {

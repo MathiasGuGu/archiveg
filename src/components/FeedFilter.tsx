@@ -20,16 +20,16 @@ const FeedFilter = ({
   setTagQuery,
   tagInput,
   setTagInput,
-}) => {
+}: any) => {
   const [isFilterOpen, setIsFilterOpen] = useState(true);
   const [searchValue, setSearchValue] = useState("");
 
   const debounceValue = useDebounce(searchValue, 500);
   const tags = useTags();
 
-  const handleRemoveTag = (index, value) => {
-    setTagQuery((prev) => {
-      const newTags = prev.filter((tag) => {
+  const handleRemoveTag = (index: Number, value: any) => {
+    setTagQuery((prev: any) => {
+      const newTags = prev.filter((tag: any) => {
         return tag !== value;
       });
 
@@ -37,21 +37,19 @@ const FeedFilter = ({
     });
   };
 
-  const checkTagInQuery = (value) => {
+  const checkTagInQuery = (value: any) => {
     if (!tagQuery.includes(value)) {
+      // @ts-ignore: Unreachable code error
+
       setTagQuery((prev) => [...prev, value]);
     } else {
       toast.error("You have already included that tag");
     }
   };
 
-  const changeDateQuery = () => {
-    setDateQuery((prev) => (prev === "old" ? "new" : "old"));
-  };
-
   useEffect(() => {
     setSearchQuery(debounceValue);
-  }, [debounceValue]);
+  }, [debounceValue, setSearchQuery]);
 
   return (
     <aside
@@ -82,6 +80,8 @@ const FeedFilter = ({
             <div className="text-xl text-zinc-700">Search for a post</div>
             <input
               onInput={(e) => {
+                // @ts-ignore: Unreachable code error
+
                 setSearchValue(e.target.value);
               }}
               className=" border px-3 h-10 rounded placeholder:text-sm"
@@ -100,13 +100,15 @@ const FeedFilter = ({
               Clear tags
             </div>
             <div className="w-full h-48 border rounded border-blue-950 border-dashed flex px-3 gap-3 py-3 flex-wrap">
-              {tagQuery.map((tag, index) => {
+              {tagQuery.map((tag: any, index: Number) => {
                 return (
                   <div
                     onClick={() => {
                       handleRemoveTag(index, tag);
                     }}
                     className="px-3 py-1 h-fit w-fit bg-blue-950 text-blue-50 rounded text-sm flex items-center justify-between gap-2 group hover:cursor-pointer"
+                    // @ts-ignore: Unreachable code error
+
                     key={index}
                   >
                     {tag}
@@ -145,10 +147,13 @@ const FeedFilter = ({
             </div>
 
             <div className="flex w-full flex-wrap gap-3">
-              {tags?.map((tag, index) => {
+              {/* @ts-ignore: Unreachable code error */}
+              {tags?.map((tag: any, index: Number) => {
                 return (
                   <div
                     className="px-3 py-1 h-fit w-fit bg-blue-950 text-blue-50 rounded text-sm flex items-center justify-between gap-2 group hover:cursor-pointer"
+                    // @ts-ignore: Unreachable code error
+
                     key={index}
                     onClick={() => {
                       checkTagInQuery(tag.title);

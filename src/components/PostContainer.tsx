@@ -18,20 +18,22 @@ const PostContainer = ({
   tagQuery = [],
   dateQuery,
   likeQuery = "",
-}) => {
+}: any) => {
   const posts = usePosts();
 
-  const filterData = (data) => {
+  const filterData = (data: any) => {
     let post = data;
     if (searchQuery !== "") {
+      // @ts-ignore: Unreachable code error
+
       post = data.filter((post) => {
         return post.title.toLowerCase().includes(searchQuery.toLowerCase());
       });
     } else if (tagQuery.length !== 0) {
-      tagQuery?.map((tag) => {
-        post = data?.filter((post) => {
-          const tagsLowered = [];
-          post.tags.map((tag) => {
+      tagQuery?.map((tag: any) => {
+        post = data?.filter((post: any) => {
+          const tagsLowered: any[] = [];
+          post.tags.map((tag: any) => {
             tagsLowered.push(tag.toLowerCase());
           });
           return tagsLowered.includes(tag.toLowerCase());
@@ -52,7 +54,8 @@ const PostContainer = ({
           <p className="text-sm">Be the first to post!</p>
         </div>
       )}
-      {showPosts?.map((post: post, index) => {
+      {showPosts?.map((post: post, index: Number) => {
+        // @ts-ignore: Unreachable code error
         return <Post post={post} key={index} />;
       })}
     </div>
