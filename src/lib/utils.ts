@@ -46,7 +46,6 @@ export function constructMetadata({
     },
     icons,
     metadataBase: new URL("https://pdfreader-green.vercel.app/"),
-    themeColor: "#fff",
     ...(noIndex && {
       robots: {
         index: false,
