@@ -6,7 +6,7 @@ import { Ghost, Loader2, MoveLeft, X } from "lucide-react";
 import { toast } from "sonner";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { absoluteUrl, cn } from "@/lib/utils";
 import AddPostSettings from "@/components/AddPostSettings";
 import AddPostBodyElements from "@/components/AddPostBodyElements";
 import MarkdownParser from "@/components/MarkdownParser";
@@ -77,7 +77,7 @@ const Page = () => {
     const body = e.target[1].value;
 
     setIsSubmitting(true);
-    const req = await fetch("http://localhost:3000/api/addpost", {
+    const req = await fetch(absoluteUrl("/api/addpost"), {
       method: "POST",
       body: JSON.stringify({
         image: filePath,

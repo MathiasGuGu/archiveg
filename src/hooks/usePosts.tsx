@@ -1,4 +1,5 @@
 "use client";
+import { absoluteUrl } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -11,7 +12,9 @@ const usePosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/addpost?date=${dateFilter}&tagsQuery=react&likeQuery=up`,
+        absoluteUrl(
+          `/api/addpost?date=${dateFilter}&tagsQuery=react&likeQuery=upvote&dislikeQuery=downvote&sort=${dateFilter}`
+        ),
         {
           method: "GET",
         }

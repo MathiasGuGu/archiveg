@@ -3,11 +3,14 @@ import Link from "next/link";
 import MobileNavbar from "./MobileNavbar";
 import { Package } from "lucide-react";
 import useUser from "@/hooks/useUser";
+import { absoluteUrl } from "@/lib/utils";
 
 const Navbar = async () => {
   const user = await useUser();
   const request = await fetch(
-    `http://localhost:3000/api/user/getSingleUser?id=${user?.id}&includePosts=false`,
+    absoluteUrl(
+      "/api/user/getSingleUser?id=" + user?.id + "&includePosts=false"
+    ),
     { method: "GET" }
   );
   const { data } = await request.json();

@@ -1,4 +1,5 @@
 "use client";
+import { absoluteUrl } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 
 const useArchive = (email: any) => {
@@ -7,7 +8,7 @@ const useArchive = (email: any) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `http://localhost:3000/api/getpost?email=${email}`,
+        absoluteUrl(` /api/getpost?email=${email}`),
         {
           method: "GET",
         }

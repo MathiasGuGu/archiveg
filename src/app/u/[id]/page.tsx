@@ -3,10 +3,13 @@ import Archive from "@/components/profile/Archive";
 import Navigation from "@/components/profile/Navigation";
 import useUser from "@/hooks/useUser";
 import Image from "next/image";
+import { absoluteUrl } from "@/lib/utils";
 const Page = async (context: any) => {
   const user = await useUser();
   const request = await fetch(
-    `http://localhost:3000/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`,
+    absoluteUrl(
+      `http://localhost:3000/api/user/getSingleUser?id=${context.params?.id}&includePosts=true`
+    ),
     { method: "GET" }
   );
   const { data, posts } = await request.json();
