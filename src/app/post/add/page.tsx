@@ -12,55 +12,17 @@ import AddPostBodyElements from "@/components/AddPostBodyElements";
 import MarkdownParser from "@/components/MarkdownParser";
 import useUser from "@/hooks/useUser";
 
-/*EXAMPLE POST
-
-# This is the first article i've ever written
-So this time i am actually tying to test out the Editor that i've made. 
-There are ofcourse some improvements that i would like, both in the UI/UX and in the functionality of the whole thing. But all in all i am pretty happy and would say this fits for a v1.0 release.
-
-## The code editor/block
-The codeblock ~~Editor~~  is something that i wanted to make sure worked. this is ofcourse, because most posts on this page by me will showcase code. And therefor the code editor makes it easy for readers to understand and read the code. 
-
-## Showcase of the code editor.
-
-
-**The Editor Features** 
-  - Easily read the code
-  - Copy the code for personal use (*Not implemented yet*)
-  - Showcase code more easy
-
-
-the editor itself looks like this: 
-```js 
- // Write your code inside the codeblock 
- // You can choose your own language by changing JS to another language 
- // The below code is example code, remove everything except the first and last line var a = 1 
- const b = 3 
- const ab = (c) => { return a + b + c } 
-```
-
-It easily shows the code as you can see and makes it easy for people to read and understand. 
-
-## Images in the editor
-The editor fully accepts images as markdown. It is really simple to use. Just click the image icon above the text block and insert a functional image link. 
-I usually use Unsplash for examples as it seamlesly integrates with markdown
-
-**Example**
-![Link Name](https://images.unsplash.com/photo-1645012656964-8632d7635191?auto=format&fit=crop&q=80&w=2062&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
-
-*/
+const getData = async () => {
+  const user = await useUser();
+  const id = user.id;
+  return id;
+};
 
 const Page = () => {
   const [id, setId] = useState<any>(null);
 
-  const getData = async () => {
-    const user = await useUser();
-    const id = user.id;
-    setId(id);
-  };
-
   useEffect(() => {
-    getData();
+    setId(getData());
   }, []);
 
   const [filePath, setFilePath] = useState<String | null>("");
