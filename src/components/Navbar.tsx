@@ -14,6 +14,8 @@ const Navbar = async () => {
     { method: "GET" }
   );
   const { data } = await request.json();
+  console.log("user data is : ");
+  console.log(data);
   return (
     <div className="flex items-center z-50 bg-white justify-center h-14 w-full fixed top-0 left-0">
       <MobileNavbar user={user}></MobileNavbar>
