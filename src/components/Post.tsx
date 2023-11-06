@@ -74,7 +74,7 @@ const Post = (data: Post) => {
             href={`/a/${id}`}
             className=" w-full border px-6 py-6 rounded hover:outline hover:outline-1 "
           >
-            <div className="flex flex-col md:flex-row gap-4 items-center  mb-3 ">
+            <div className="flex flex-col gap-4   mb-3 ">
               <h2 className="text-2xl  font-bold text-blue-950">{title}</h2>
               <div className="flex flex-wrap gap-3">
                 {tags.map((tag: any, index: Number) => {
@@ -91,7 +91,7 @@ const Post = (data: Post) => {
                 })}
               </div>
             </div>
-            <Markdown className={"max-h-24 overflow-hidden"}>{body}</Markdown>
+            <Markdown className={"max-h-24 w-full  "}>{body}</Markdown>
           </Link>
         </PostWithoutImage>
       )}
