@@ -1,7 +1,9 @@
 "use client";
 import FeedFilter from "@/components/FeedFilter";
 import PostContainer from "@/components/PostContainer";
-import React, { useCallback, useState } from "react";
+import usePosts from "@/hooks/usePosts";
+import useTags from "@/hooks/useTags";
+import React, { useCallback, useEffect, useState } from "react";
 
 const Page = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,3 +40,8 @@ const Page = () => {
 };
 
 export default Page;
+
+export const GetPostData = async () => {
+  let [posts, tags] = await Promise.all([usePosts(), useTags()]);
+  return [posts, tags];
+};

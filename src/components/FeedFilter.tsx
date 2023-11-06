@@ -26,7 +26,6 @@ const FeedFilter = ({
 
   const debounceValue = useDebounce(searchValue, 500);
   const tags = useTags();
-
   const handleRemoveTag = (index: Number, value: any) => {
     setTagQuery((prev: any) => {
       const newTags = prev.filter((tag: any) => {
